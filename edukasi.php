@@ -98,12 +98,16 @@ $tas = [
 require __DIR__ . '/includes/header.php';
 ?>
 
-<main class="container-xl py-3" style="max-width: 1000px;">
-  <h1 class="h3 fw-bold"><i class="bi bi-book text-danger"></i> Edukasi Gempa Bumi</h1>
-  <p class="text-muted">Pengetahuan dasar untuk memahami gempa bumi dan bersiap menghadapinya. Bagian paling penting: <a href="#saat">apa yang dilakukan saat gempa terjadi</a>.</p>
+<main class="container-xl py-3 ed-page">
+  <header class="ed-hero">
+    <span class="ed-pill"><span></span> PANDUAN KESIAPSIAGAAN</span>
+    <h1>Edukasi Gempa<br><em>Bumi.</em></h1>
+    <p>Pengetahuan dasar untuk memahami gempa bumi dan bersiap menghadapinya. Bagian paling penting: <a href="#saat">apa yang dilakukan saat gempa terjadi</a>.</p>
+    <div class="ed-hero-links"><a href="#definisi">Definisi</a><a href="#penanggulangan">Penanggulangan</a><a href="#skala">Skala Gempa</a><a href="#tas-siaga">Tas Siaga</a><a class="ed-hero-cta" href="#saat">Apa yang dilakukan saat gempa ↗</a></div>
+  </header>
 
-  <!-- Navigasi cepat -->
-  <nav class="d-flex flex-wrap gap-2 mb-4 no-print" aria-label="Daftar isi">
+  <!-- Navigasi cepat: seluruh anchor lama tetap tersedia -->
+  <nav class="ed-nav d-flex flex-wrap gap-2 mb-4 no-print" aria-label="Daftar isi">
     <a class="btn btn-sm btn-outline-dark" href="#definisi">Definisi</a>
     <a class="btn btn-sm btn-outline-dark" href="#penyebab">Penyebab</a>
     <a class="btn btn-sm btn-outline-dark" href="#dampak">Dampak</a>
@@ -115,7 +119,7 @@ require __DIR__ . '/includes/header.php';
   </nav>
 
   <!-- ================= DEFINISI ================= -->
-  <section id="definisi" class="kartu p-3 p-md-4 mb-3">
+  <section id="definisi" class="kartu p-3 p-md-4 mb-3 ed-section ed-definisi">
     <h2 class="h5 fw-bold">1. Apa itu Gempa Bumi?</h2>
     <p>Gempa bumi adalah getaran atau guncangan di permukaan bumi akibat pelepasan energi secara tiba-tiba dari dalam bumi. Energi ini umumnya berasal dari pergeseran batuan di kerak bumi yang sudah menahan tekanan dalam waktu lama.</p>
     <div class="row g-3">
@@ -140,7 +144,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
   <!-- ================= PENYEBAB ================= -->
-  <section id="penyebab" class="kartu p-3 p-md-4 mb-3">
+  <section id="penyebab" class="kartu p-3 p-md-4 mb-3 ed-section ed-penyebab">
     <h2 class="h5 fw-bold">2. Penyebab Gempa Bumi</h2>
     <div class="row g-3">
       <div class="col-md-6 col-lg-3"><div class="border rounded p-3 h-100">
@@ -160,7 +164,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
   <!-- ================= DAMPAK ================= -->
-  <section id="dampak" class="kartu p-3 p-md-4 mb-3">
+  <section id="dampak" class="kartu p-3 p-md-4 mb-3 ed-section ed-dampak">
     <h2 class="h5 fw-bold">3. Dampak Gempa Bumi</h2>
     <div class="row g-3">
       <div class="col-md-6">
@@ -202,7 +206,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
   <!-- ================= PENANGGULANGAN ================= -->
-  <section id="penanggulangan" class="kartu p-3 p-md-4 mb-3">
+  <section id="penanggulangan" class="kartu p-3 p-md-4 mb-3 ed-section ed-action">
     <h2 class="h5 fw-bold">4. Cara Penanggulangan</h2>
 
     <ul class="nav nav-pills mb-3 no-print" id="tabAksi" role="tablist">
@@ -279,7 +283,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
   <!-- ================= MITIGASI ================= -->
-  <section id="mitigasi" class="kartu p-3 p-md-4 mb-3">
+  <section id="mitigasi" class="kartu p-3 p-md-4 mb-3 ed-section ed-mitigasi">
     <h2 class="h5 fw-bold">5. Mitigasi Bencana</h2>
     <p>Mitigasi adalah upaya mengurangi risiko dan kerugian sebelum bencana terjadi. Gempa tidak dapat dicegah, tetapi korban dan kerusakan dapat dikurangi.</p>
     <div class="row g-3">
@@ -304,7 +308,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
   <!-- ================= SKALA ================= -->
-  <section id="skala" class="kartu p-3 p-md-4 mb-3">
+  <section id="skala" class="kartu p-3 p-md-4 mb-3 ed-section ed-scale">
     <h2 class="h5 fw-bold">6. Memahami Skala Gempa</h2>
 
     <h3 class="h6 fw-bold mt-3">Magnitudo: kekuatan gempa di sumbernya</h3>
@@ -339,7 +343,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
   <!-- ================= MITOS ================= -->
-  <section id="mitos" class="kartu p-3 p-md-4 mb-3">
+  <section id="mitos" class="kartu p-3 p-md-4 mb-3 ed-section ed-myth">
     <h2 class="h5 fw-bold">7. Mitos vs Fakta</h2>
     <div class="accordion" id="accMitos">
       <?php foreach ($mitos as $i => [$m, $f]): ?>
@@ -358,7 +362,7 @@ require __DIR__ . '/includes/header.php';
   </section>
 
   <!-- ================= TAS SIAGA ================= -->
-  <section id="tas-siaga" class="kartu p-3 p-md-4 mb-3">
+  <section id="tas-siaga" class="kartu p-3 p-md-4 mb-3 ed-section ed-kit">
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
       <h2 class="h5 fw-bold mb-0">8. Checklist Tas Siaga Bencana</h2>
       <div class="no-print d-flex gap-2">
