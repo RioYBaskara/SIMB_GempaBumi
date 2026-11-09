@@ -141,4 +141,4 @@ INSERT INTO kontak_darurat (instansi, nomor, keterangan, urutan) VALUES
 -- Admin awal berisi PLACEHOLDER (tidak bisa dipakai login).
 -- Buka http://localhost/SIMB_GempaBumi/admin/setup.php untuk membuat akun admin Anda.
 INSERT INTO admin (username, password_hash, nama_lengkap) VALUES
-('admin', '$2y$10$REPLACE_THIS_WITH_YOUR_OWN_HASH', 'Administrator');
+('admin', '$2y$10$tNjVNiBCcnbpWe4sOHwtF.jBOTxggphVM5GpQmcug2xt4ef3f8lEG', 'Administrator');
