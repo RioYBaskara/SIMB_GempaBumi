@@ -1,0 +1,285 @@
+/*
+ * assets/css/style.css
+ * Gaya kustom SIMB GempaBumi
+ * Referensi visual: USGS Earthquake Hazards — bersih, dominan putih, header biru tua
+ */
+
+/* ============================================================
+   VARIABEL WARNA
+   ============================================================ */
+:root {
+    --biru-tua:   #1a3a5c;   /* Warna utama header & navbar */
+    --biru:       #2563a8;   /* Aksen tombol */
+    --biru-muda:  #e8f0f9;   /* Background kartu info */
+    --abu-terang: #f7f8fa;   /* Background halaman */
+    --border:     #e2e8f0;
+    --teks:       #1e293b;
+    --teks-muted: #64748b;
+    --merah:      #dc2626;
+    --kuning:     #d97706;
+    --hijau:      #16a34a;
+}
+
+/* ============================================================
+   GLOBAL
+   ============================================================ */
+body {
+    background-color: var(--abu-terang);
+    color: var(--teks);
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+a { color: var(--biru); }
+a:hover { color: var(--biru-tua); }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.bg-primary-dark {
+    background-color: var(--biru-tua) !important;
+}
+
+.navbar-brand img {
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+.navbar-nav .nav-link {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    background-color: rgba(255,255,255,0.12);
+}
+
+/* ============================================================
+   BANNER STATUS GEMPA
+   ============================================================ */
+.banner-status {
+    font-size: 1.05rem;
+    font-weight: 500;
+    border-radius: 0;
+    border: none;
+    padding: 0.75rem 0;
+    text-align: center;
+    letter-spacing: 0.01em;
+}
+.banner-merah  { background-color: #fee2e2; color: #991b1b; border-bottom: 3px solid #dc2626; }
+.banner-kuning { background-color: #fef3c7; color: #92400e; border-bottom: 3px solid #f59e0b; }
+.banner-hijau  { background-color: #d1fae5; color: #065f46; border-bottom: 3px solid #10b981; }
+
+/* ============================================================
+   KARTU INFORMASI
+   ============================================================ */
+.card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.card-header {
+    background-color: var(--biru-tua);
+    color: #fff;
+    border-radius: 9px 9px 0 0 !important;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    font-size: 0.95rem;
+}
+
+/* Kartu gempa terbaru */
+.card-gempa-terbaru {
+    border-left: 5px solid var(--biru);
+}
+.angka-magnitudo {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--biru-tua);
+}
+.label-magnitudo {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--teks-muted);
+}
+
+/* ============================================================
+   BADGE MAGNITUDO
+   ============================================================ */
+.badge-mag {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #fff;
+}
+.mag-rendah    { background-color: #64748b; }
+.mag-sedang    { background-color: #0891b2; }
+.mag-kuat      { background-color: #d97706; }
+.mag-berbahaya { background-color: #dc2626; }
+
+/* ============================================================
+   PETA LEAFLET
+   ============================================================ */
+#peta-gempa {
+    height: 420px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    z-index: 0;
+}
+
+/* Popup peta */
+.leaflet-popup-content {
+    font-size: 0.85rem;
+    min-width: 180px;
+}
+.leaflet-popup-content strong { color: var(--biru-tua); }
+
+/* ============================================================
+   TABEL
+   ============================================================ */
+.table {
+    font-size: 0.88rem;
+}
+.table thead th {
+    background-color: var(--biru-tua);
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    border: none;
+}
+.table tbody tr:hover {
+    background-color: var(--biru-muda);
+}
+.table-responsive { border-radius: 8px; overflow: hidden; }
+
+/* ============================================================
+   SECTION HEADER
+   ============================================================ */
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--biru-tua);
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--biru);
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+/* ============================================================
+   HALAMAN EDUKASI — ACCORDION
+   ============================================================ */
+.accordion-button {
+    font-weight: 600;
+    color: var(--biru-tua);
+    font-size: 1rem;
+}
+.accordion-button:not(.collapsed) {
+    background-color: var(--biru-muda);
+    color: var(--biru-tua);
+    box-shadow: none;
+}
+.accordion-button::after {
+    filter: invert(20%) sepia(50%) saturate(500%) hue-rotate(190deg);
+}
+
+/* Grid gambar edukasi */
+.grid-gambar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+.grid-gambar .gambar-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+}
+.grid-gambar .gambar-item img:hover { transform: scale(1.02); }
+.sumber-gambar {
+    font-size: 0.75rem;
+    color: var(--teks-muted);
+    margin-top: 0.25rem;
+}
+
+/* ============================================================
+   HALAMAN ORANG HILANG — KARTU
+   ============================================================ */
+.kartu-orang {
+    transition: transform 0.15s;
+}
+.kartu-orang:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.foto-orang {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+.badge-status-dicari   { background-color: #dc2626; }
+.badge-status-ditemukan { background-color: #16a34a; }
+
+/* ============================================================
+   HALAMAN API — KODE SNIPPET
+   ============================================================ */
+.kode-snippet {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border-radius: 8px;
+    padding: 1.25rem;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.83rem;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+/* ============================================================
+   RESPONSIVITAS TAMBAHAN
+   ============================================================ */
+@media (max-width: 576px) {
+    .angka-magnitudo { font-size: 2.8rem; }
+    #peta-gempa      { height: 280px; }
+    .grid-gambar     { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   UTILITAS
+   ============================================================ */
+.text-light-50  { color: rgba(255,255,255,0.6) !important; }
+.bg-abu         { background-color: var(--abu-terang); }
+.border-biru    { border-color: var(--biru) !important; }
+.rounded-card   { border-radius: 10px; }
+
+/* Loading spinner */
+.spinner-bmkg {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(0,0,0,.15);
+    border-top-color: var(--biru);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Notifikasi data lama */
+.notif-data-lama {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}

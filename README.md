@@ -1,78 +1,175 @@
-# Sistem Informasi Manajemen Bencana (SIMB) - Edukasi & Pemantauan Gempa Bumi
+# SIMB GempaBumi — Sistem Informasi Manajemen Bencana
 
-Aplikasi web berbasis **PHP Native** dan **Bootstrap** yang dirancang sebagai platform edukasi, pemantauan data gempa bumi secara *real-time* (via API), visualisasi grafik statistik gempa, serta layanan pencarian orang hilang akibat bencana.
+Aplikasi web edukasi dan pemantauan gempa bumi berbasis PHP Native + MySQL + Bootstrap 5.
 
----
+## 📋 Persyaratan
 
-## 📌 Fitur Utama
-
-### 1. Informasi & Edukasi Gempa Bumi
-Modul edukasi interaktif untuk meningkatkan kesadaran dan kesiapsiagaan masyarakat terhadap bencana gempa bumi:
-* **Definisi Bencana:** Penjelasan mendasar mengenai apa itu gempa bumi.
-* **Penyebab:** Faktor-faktor pemicu terjadinya gempa bumi (tektonik, vulkanik, dll.).
-* **Dampak terhadap Manusia & Ekonomi:** Analisis dampak negatif serta sudut pandang pemulihan/dampak positif (rekontruksi, kesadaran struktural).
-* **Cara Penanggulangan:** Panduan langkah-langkah sebelum terjadi gempa, saat kejadian, dan pasca-bencana.
-* **Mitigasi Bencana:** Strategi dan upaya meminimalisir risiko serta kerugian jika bencana terjadi.
-
-### 2. Monitoring & Visualisasi Data Gempa (API)
-* **Integrasi API:** Mengambil data parameter gempa bumi terkini secara langsung melalui API publik (misal: API BMKG).
-* **Perekaman Data:** Menyimpan riwayat data gempa ke dalam database MySQL.
-* **Grafik Visualisasi:** Menyajikan statistik frekuensi dan magnitudo gempa dalam bentuk grafik interaktif (menggunakan Chart.js / Google Charts).
-
-### 3. Fitur Cari Orang Hilang
-Fasilitas pelaporan dan pencarian anggota keluarga atau kerabat yang hilang saat bencana terjadi, mencakup data:
-* Data Diri (Nama Lengkap, Usia, Jenis Kelamin, Foto/Ciri-ciri).
-* Lokasi Terakhir Terlihat.
-* Domisili / Alamat Asal.
-* Kontak Informasi Nama Keluarga / Pelapor.
+- XAMPP / Laragon (PHP 7.4+, MySQL 5.7+)
+- Koneksi internet (untuk mengambil data BMKG dan CDN Bootstrap/Leaflet/Chart.js)
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## 🚀 Cara Instalasi
 
-* **Language:** PHP (Native)
-* **Database:** MySQL
-* **Frontend:** Bootstrap (Responsive Web Design), HTML5, CSS3, JavaScript
-* **Visualization:** Chart.js (atau Library Grafik JS lainnya)
-* **API Integration:** API Data Gempa Bumi
+### 1. Salin folder ke htdocs
+
+```
+C:\xampp\htdocs\SIMB_GempaBumi\
+```
+
+atau untuk Laragon:
+
+```
+C:\laragon\www\SIMB_GempaBumi\
+```
+
+### 2. Import database
+
+- Buka **phpMyAdmin** → http://localhost/phpmyadmin
+- Klik **Import** → pilih file `database/db_simb.sql`
+- Klik **Go**
+
+Database `db_simb` akan otomatis dibuat beserta tabel dan data dummy.
+
+### 3. Sesuaikan konfigurasi database
+
+Buka `config/koneksi.php` dan sesuaikan jika perlu:
+
+```php
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');       // Kosong untuk XAMPP default
+define('DB_NAME', 'db_simb');
+```
+
+### 4. Buka di browser
+
+```
+http://localhost/SIMB_GempaBumi/
+```
 
 ---
 
-## 🚀 Panduan Instalasi & Penggunaan
+## 🖼️ Konfigurasi API Key Gambar (Opsional)
 
-### 1. Prasyarat Sistem
-* Web Server (XAMPP / WAMP / Laragon)
-* PHP versi 7.4 ke atas
-* MySQL Database
+Gambar ilustrasi di halaman Edukasi diambil dari Google Images via Google Custom Search API.
+Tanpa API key, gambar dummy dari Wikimedia Commons tetap ditampilkan (sudah termasuk di database SQL).
 
-### 2. Langkah-Langkah Instalasi
-1. **Clone Repositori ini:**
-   ```bash
-   git clone https://github.com/username/nama-repo-simb.git
-   cd nama-repo-simb
-   ```
+### Langkah 1 — Buat Search Engine
 
-2. **Pindahkan Folder Project:**
-   Pindahkan folder project ke direktori web server Anda (misal: `htdocs` di XAMPP atau `www` di Laragon).
+1. Buka [Google Programmable Search Engine](https://programmablesearchengine.google.com/)
+2. Klik **Add** → isi nama dan **tambahkan "www.google.com"** sebagai situs pencarian
+3. Aktifkan **"Image search"** dan **"Search the entire web"**
+4. Salin **Search Engine ID (cx)** yang tampil
 
-3. **Import Database:**
-   * Buka **phpMyAdmin** (`http://localhost/phpmyadmin`).
-   * Buat database baru dengan nama `db_simb` (atau sesuaikan).
-   * Import file database yang berada di direktori project: `database/db_simb.sql`.
+### Langkah 2 — Aktifkan Custom Search API
 
-4. **Konfigurasi Koneksi Database:**
-   Buka file koneksi (misal `config/koneksi.php`) dan sesuaikan kredensial database Anda:
-   ```php
-   $host = "localhost";
-   $user = "root";
-   $pass = "";
-   $db   = "db_simb";
+1. Buka [Google Cloud Console](https://console.cloud.google.com/)
+2. Buat project baru (atau pilih yang ada)
+3. **APIs & Services** → **Library** → cari **"Custom Search API"** → Enable
+4. **APIs & Services** → **Credentials** → **Create Credentials** → **API key**
+5. Salin API key
 
-   $koneksi = mysqli_connect($host, $user, $pass, $db);
-   ```
+### Langkah 3 — Isi di config/api_key.php
 
-5. **Jalankan Aplikasi:**
-   Buka browser dan akses URL:
-   ```text
-   http://localhost/SIMB_GempaBumi
-   ```
+```php
+define('GOOGLE_API_KEY', 'AIza...KUNCI_ANDA');
+define('GOOGLE_CX',      '12345...ID_SEARCH_ENGINE');
+```
+
+> ⚠️ Kuota gratis Google Custom Search: **100 query/hari**. Hasil pencarian di-cache 7 hari di database untuk menghemat kuota.
+
+---
+
+## 👤 Login Admin
+
+- URL: http://localhost/SIMB_GempaBumi/admin/login.php
+- Username default: `admin`
+- Password default: `admin123`
+
+> ⚠️ Segera ganti password di database setelah instalasi!
+
+Untuk mengganti password:
+```sql
+UPDATE admin SET password_hash = PASSWORD_HASH('password_baru', PASSWORD_DEFAULT) WHERE username = 'admin';
+```
+
+Atau via PHP:
+```php
+echo password_hash('password_baru_anda', PASSWORD_DEFAULT);
+```
+Lalu update kolom `password_hash` di tabel `admin`.
+
+---
+
+## 📁 Struktur Folder
+
+```
+SIMB_GempaBumi/
+├── index.php                 Beranda & informasi gempa terbaru
+├── edukasi.php               Materi edukasi gempa (5 bagian)
+├── monitoring.php            Riwayat & grafik data gempa
+├── orang-hilang.php          Daftar orang hilang (kartu)
+├── lapor-orang-hilang.php    Form pelaporan orang hilang
+├── detail-orang-hilang.php   Detail laporan + tandai ditemukan
+├── api-info.php              Dokumentasi API data gempa
+├── config/
+│   ├── koneksi.php           Konfigurasi database
+│   ├── api_key.php           API Key Google (JANGAN di-commit!)
+│   └── api_key.example.php   Contoh file api_key.php
+├── includes/
+│   ├── header.php            Template HTML head
+│   ├── footer.php            Template footer + script CDN
+│   ├── navbar.php            Navigasi utama
+│   ├── fungsi.php            Fungsi-fungsi pembantu
+│   └── _gambar_edukasi.php   Komponen grid gambar edukasi
+├── api/
+│   ├── gempa_terbaru.php     JSON: 1 gempa terbaru BMKG
+│   ├── gempa_terkini.php     JSON: 15 gempa M5.0+ terkini
+│   ├── gempa_dirasakan.php   JSON: 15 gempa dirasakan
+│   ├── statistik.php         JSON: data untuk Chart.js
+│   └── cari_gambar.php       JSON: cari gambar Google
+├── admin/
+│   ├── login.php             Login admin
+│   └── gambar.php            Kelola gambar & laporan
+├── assets/
+│   ├── css/style.css         CSS kustom
+│   ├── js/app.js             JavaScript kustom
+│   └── img/                  Logo, placeholder SVG
+├── uploads/
+│   └── orang_hilang/         Foto upload orang hilang
+└── database/
+    └── db_simb.sql           Schema + data dummy
+```
+
+---
+
+## 🔌 Sumber Data
+
+- **BMKG Open Data**: https://data.bmkg.go.id/gempabumi/
+- **OpenStreetMap** (via Leaflet.js): peta interaktif
+- **Google Custom Search API**: gambar ilustrasi edukasi
+
+---
+
+## 🔧 Hal yang Bisa Dikembangkan
+
+1. **Notifikasi Push** — kirim notifikasi browser saat ada gempa M≥5.0 baru
+2. **Export PDF/Excel** — ekspor riwayat gempa untuk pelaporan
+3. **Peta Risiko** — overlay zona rawan gempa dari peta BNPB
+4. **Multi-bahasa** — tambahkan dukungan bahasa Inggris
+5. **Autentikasi pelapor** — OTP via WhatsApp untuk laporan orang hilang
+6. **Scraping data historis BMKG** — isi database dengan data gempa beberapa tahun terakhir
+7. **Grafik scatter** — plot koordinat gempa di peta heatmap
+8. **Integrasi USGS** — fallback ke API USGS jika BMKG tidak tersedia
+9. **PWA (Progressive Web App)** — tambahkan manifest + service worker agar bisa diinstal di HP
+10. **Dark mode** — toggle tema gelap/terang
+
+---
+
+## ⚠️ Catatan Keamanan
+
+- Jangan publikasikan `config/api_key.php` ke repositori publik (sudah ada di .gitignore)
+- Ganti password admin default secepatnya
+- Folder `uploads/` sudah dibuat, pastikan permission-nya 755 di Linux
+- Aplikasi ini untuk tujuan akademik — untuk produksi, tambahkan HTTPS dan hardening tambahan

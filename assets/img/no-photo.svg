@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="90" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="100" y="95" text-anchor="middle" font-family="sans-serif" font-size="50">👤</text>
+  <text x="100" y="140" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#64748b">Tidak ada foto</text>
+</svg>
