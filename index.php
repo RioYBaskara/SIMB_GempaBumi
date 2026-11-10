@@ -21,7 +21,32 @@ while ($row = $res->fetch_assoc()) {
 require __DIR__ . '/includes/header.php';
 ?>
 
-<main class="container-xl py-3">
+<main class="rd-main">
+  <!-- HERO LIVE: hanya membaca data yang sudah disediakan app.js -->
+  <section class="rd-hero rd-hero-live" aria-label="Gempa terkini">
+    <div class="hx-waves" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="rd-hero-inner hx-inner">
+      <span class="rd-eyebrow" id="hx-status"><span class="rd-live-dot"></span> LIVE · Diperbarui otomatis tiap 60 detik</span>
+      <div id="hx-tsunami" class="hx-tsunami" hidden>PERINGATAN · BERPOTENSI TSUNAMI</div>
+      <div class="hx-mag" id="hx-mag">M —</div>
+      <h1 class="hx-region" id="hx-region">Memuat gempa terkini…</h1>
+      <p class="hx-relative" id="hx-relative">Data BMKG sedang disinkronkan</p>
+      <div class="hx-data-row" id="hx-data">
+        <div><span>WAKTU</span><strong id="hx-time">—</strong></div>
+        <div><span>KEDALAMAN</span><strong id="hx-depth">—</strong></div>
+        <div><span>KOORDINAT</span><strong id="hx-coord">—</strong></div>
+        <div><span>POTENSI / DIRASAKAN</span><strong id="hx-impact">—</strong></div>
+        <button type="button" class="hx-map-btn" id="hx-map" data-fokus="">Lihat di Peta ↗</button>
+      </div>
+      <div class="hx-error" id="hx-error" hidden>Data gempa terkini belum tersedia. <button type="button" id="hx-reload">Muat ulang</button></div>
+    </div>
+    <div class="rd-hero-strip">
+      <a href="#kontak"><span>01</span> Kontak darurat</a><a href="#peta"><span>02</span> Peta gempa</a>
+      <a href="#dirasakan"><span>03</span> Gempa dirasakan</a><a href="#daftar"><span>04</span> Daftar M5+</a>
+      <a href="#statistik"><span>05</span> Statistik</a>
+    </div>
+  </section>
+  <div class="container-xl py-4 rd-content">
 
   <!-- ============ BARIS 1: DETAIL TERBARU + KONTAK DARURAT ============ -->
   <div class="row g-3 mb-3">
@@ -231,7 +256,7 @@ require __DIR__ . '/includes/header.php';
         ['Tas Siaga & Mitos',    'Checklist tas siaga, skala gempa, mitos vs fakta.', '#tas-siaga'],
       ];
       foreach ($edu as $e): ?>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 ed-home-card">
           <a class="text-decoration-none text-dark" href="edukasi.php<?= $e[2] ?>">
             <div class="kartu p-3 h-100">
               <div class="fw-bold"><?= htmlspecialchars($e[0]) ?></div>
@@ -243,7 +268,9 @@ require __DIR__ . '/includes/header.php';
     </div>
   </section>
 
+  </div>
 </main>
 
+<script defer src="assets/js/hero-live.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <?php require __DIR__ . '/includes/footer.php'; ?>

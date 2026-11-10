@@ -21,6 +21,8 @@ $aktif = $aktif ?? 'beranda';
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
   <link href="<?= $base ?>assets/css/style.css" rel="stylesheet">
+  <link href="<?= $base ?>assets/css/redesign.css" rel="stylesheet">
+  <link href="<?= $base ?>assets/css/redesign-v3.css" rel="stylesheet">
 </head>
 <body>
 

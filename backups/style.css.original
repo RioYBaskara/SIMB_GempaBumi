@@ -1,0 +1,72 @@
+/* SIMB - gaya fungsional: kontras tinggi, warna terbatas
+   merah = bahaya, kuning = waspada, abu = info */
+
+:root {
+  --simb-bahaya:  #c62828;
+  --simb-waspada: #f9a825;
+  --simb-info:    #455a64;
+}
+
+body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: #f4f5f7; }
+
+/* ---------- ALERT BAR ---------- */
+.alert-bar { font-size: 1.05rem; font-weight: 600; border-bottom: 3px solid rgba(0,0,0,.25); }
+.alert-bar-info    { background: var(--simb-info);    color: #fff; }
+.alert-bar-waspada { background: var(--simb-waspada); color: #111; }
+.alert-bar-bahaya  { background: var(--simb-bahaya);  color: #fff; }
+.alert-bar a { color: inherit; text-decoration: underline; }
+.alert-bar .badge-mag {
+  display: inline-block; min-width: 3.2rem; text-align: center;
+  padding: .1rem .5rem; margin-right: .5rem; border-radius: .35rem;
+  background: rgba(0,0,0,.25); font-size: 1.25rem; font-weight: 800;
+}
+.alert-bar-waspada .badge-mag { background: rgba(0,0,0,.15); }
+
+/* ---------- PETA ---------- */
+#petaGempa { height: 480px; border-radius: .5rem; border: 2px solid #cfd4da; z-index: 0; }
+@media (max-width: 576px) { #petaGempa { height: 360px; } }
+
+.legend-dot { display: inline-block; width: .85rem; height: .85rem; border-radius: 50%; border: 1px solid #333; vertical-align: middle; }
+
+/* ---------- KARTU ---------- */
+.kartu { background: #fff; border: 1px solid #d5d9de; border-radius: .5rem; }
+.kartu-judul { font-weight: 700; border-bottom: 2px solid #e1e4e8; padding: .6rem 1rem; }
+.sticky-info { scroll-margin-top: 70px; }
+section[id] { scroll-margin-top: 70px; }
+
+/* ---------- KONTAK DARURAT ---------- */
+.btn-darurat { text-align: left; font-weight: 700; font-size: 1.05rem; padding: .7rem 1rem; }
+.btn-darurat small { font-weight: 400; display: block; opacity: .9; }
+.btn-darurat .nomor { float: right; font-size: 1.35rem; }
+
+/* ---------- BADGE MAGNITUDO ---------- */
+.mag { display: inline-block; min-width: 2.8rem; text-align: center; font-weight: 800; border-radius: .35rem; padding: .1rem .4rem; color: #fff; }
+.mag-bahaya  { background: var(--simb-bahaya); }
+.mag-waspada { background: var(--simb-waspada); color: #111; }
+.mag-info    { background: var(--simb-info); }
+
+/* ---------- DAFTAR ---------- */
+.item-gempa { border-left: 5px solid var(--simb-info); }
+.item-gempa.level-bahaya  { border-left-color: var(--simb-bahaya); }
+.item-gempa.level-waspada { border-left-color: var(--simb-waspada); }
+.tabel-gempa tbody tr { cursor: pointer; }
+.tabel-gempa tbody tr:hover { background: #fff8e1; }
+
+/* ---------- AKSES CEPAT ---------- */
+.akses-cepat a { text-decoration: none; }
+.akses-cepat .kartu { padding: 1rem; height: 100%; transition: border-color .15s; }
+.akses-cepat a:hover .kartu { border-color: #111; }
+.akses-cepat i { font-size: 1.8rem; }
+
+/* Fokus terlihat jelas (aksesibilitas) */
+a:focus-visible, button:focus-visible { outline: 3px solid #1565c0; outline-offset: 2px; }
+
+/* ---------- STATISTIK ---------- */
+.kotak-grafik { position: relative; height: 280px; }
+
+/* ---------- CETAK (checklist tas siaga) ---------- */
+@media print {
+  nav, footer, .no-print, #alertBar { display: none !important; }
+  body { background: #fff; }
+  .kartu { border: 1px solid #999; break-inside: avoid; }
+}
