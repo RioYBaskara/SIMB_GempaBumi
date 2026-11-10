@@ -258,7 +258,7 @@ require __DIR__ . '/includes/header.php';
       foreach ($edu as $e): ?>
         <div class="col-md-6 col-lg-4 ed-home-card">
           <a class="text-decoration-none text-dark" href="edukasi.php<?= $e[2] ?>">
-            <div class="kartu p-3 h-100">
+            <div class="kartu p-3 h-100" style="background-color: white;">
               <div class="fw-bold"><?= htmlspecialchars($e[0]) ?></div>
               <div class="small text-muted"><?= htmlspecialchars($e[1]) ?></div>
             </div>
