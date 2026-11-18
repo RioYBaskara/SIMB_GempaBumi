@@ -323,3 +323,77 @@
   muatSemua();
   setInterval(muatSemua, REFRESH_MS);
 })();
+
+
+/* ── SIMB Navbar hash-based active link ── */
+(function simbNavHash() {
+  // Hanya aktif di index.php — halaman lain biar PHP yang urus $aktif
+  if (!/\/(index\.php)?$/.test(location.pathname)) return;
+
+  var list = document.getElementById('simbNavList');
+  if (!list) return;
+
+  // Semua link di navbar — hash-based maupun page-based
+  var allLinks  = list.querySelectorAll('.simb-nav-link');
+  var hashLinks = list.querySelectorAll('[data-simb-hash]');
+  if (!hashLinks.length) return;
+
+  /**
+   * Hapus active dari SEMUA link di navbar,
+   * lalu set active ke link yang sesuai hash (jika ada).
+   * Jika hash kosong/tidak dikenal, kembalikan active ke Beranda
+   * (hanya jika ini memang halaman index.php tanpa hash).
+   */
+  function syncFromHash() {
+    var h = location.hash.replace('#', '');
+    var matched = false;
+
+    allLinks.forEach(function(a) { a.classList.remove('active'); });
+
+    if (h) {
+      hashLinks.forEach(function(a) {
+        if (a.dataset.simbHash === h) {
+          a.classList.add('active');
+          matched = true;
+        }
+      });
+    }
+
+    // Tidak ada hash yang cocok → pulihkan Beranda, TAPI hanya di index.php
+    // (di halaman lain, PHP sudah men-set active yang benar via $aktif)
+    if (!matched && /\/(index\.php)?$/.test(location.pathname)) {
+      var beranda = list.querySelector('[data-simb-page="beranda"]');
+      if (beranda) beranda.classList.add('active');
+    }
+  }
+
+  // Jalankan saat halaman pertama load
+  syncFromHash();
+
+  // Saat hash berubah (browser back/forward atau klik anchor)
+  window.addEventListener('hashchange', syncFromHash);
+}());
+
+/* ── SIMB Navbar live clock (WIB) ── */
+(function simbNavClock() {
+  var clocks = [
+    document.getElementById('simbNavClock'),
+    document.getElementById('simbNavClockMobile')
+  ].filter(Boolean);
+  if (!clocks.length) return;
+
+  function tick() {
+    var now = new Date();
+    var str = now.toLocaleTimeString('id-ID', {
+      timeZone: 'Asia/Jakarta',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).replace(/\./g, ':') + ' WIB';
+    clocks.forEach(function(el) { el.textContent = str; });
+  }
+
+  tick();
+  setInterval(tick, 1000);
+}());

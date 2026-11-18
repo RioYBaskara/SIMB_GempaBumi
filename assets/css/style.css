@@ -4,7 +4,7 @@
 :root {
   --simb-bahaya:  #c62828;
   --simb-waspada: #f9a825;
-  --simb-info:    #455a64;
+  --simb-info:    #5C3A1E;  /* coklat tanah medium — info/netral */
 }
 
 body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: #f4f5f7; }
