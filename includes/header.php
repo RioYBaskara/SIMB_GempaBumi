@@ -26,34 +26,59 @@ $aktif = $aktif ?? 'beranda';
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top simb-navbar">
   <div class="container-xl">
-    <a class="navbar-brand fw-bold" href="<?= $base ?>index.php">
-      <i class="bi bi-activity text-danger"></i> SIMB
+
+    <!-- ── Brand ── -->
+    <a class="navbar-brand fw-bold simb-brand" href="<?= $base ?>index.php">
+      <span class="simb-brand__wordmark">
+        <span class="simb-brand__top">
+          <span class="simb-brand__name">SIMB</span><span class="simb-brand__dot"></span>
+        </span>
+        <span class="simb-brand__sub">Sistem Informasi Manajemen Bencana</span>
+      </span>
     </a>
 
-    <!-- Tombol DARURAT selalu terlihat, termasuk di HP -->
-    <a class="btn btn-danger btn-sm fw-bold ms-auto me-2 d-lg-none" href="<?= $base ?>index.php#kontak">
+    <!-- ── Mobile: emergency + hamburger ── -->
+    <a class="btn btn-danger btn-sm fw-bold ms-auto me-2 d-lg-none simb-btn-emergency" href="<?= $base ?>index.php#kontak">
       <i class="bi bi-telephone-fill"></i> DARURAT
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuUtama"
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuUtama"
             aria-controls="menuUtama" aria-expanded="false" aria-label="Buka menu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- ── Collapsible menu ── -->
     <div class="collapse navbar-collapse" id="menuUtama">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link <?= $aktif === 'beranda' ? 'active' : '' ?>" href="<?= $base ?>index.php">Beranda</a></li>
-        <li class="nav-item"><a class="nav-link" href="<?= $base ?>index.php#peta">Peta Gempa</a></li>
-        <li class="nav-item"><a class="nav-link" href="<?= $base ?>index.php#dirasakan">Gempa Dirasakan</a></li>
-        <li class="nav-item"><a class="nav-link <?= $aktif === 'orang-hilang' ? 'active' : '' ?>" href="<?= $base ?>orang-hilang/cari.php">Orang Hilang</a></li>
-        <li class="nav-item"><a class="nav-link" href="<?= $base ?>index.php#statistik">Statistik</a></li>
-        <li class="nav-item"><a class="nav-link <?= $aktif === 'edukasi' ? 'active' : '' ?>" href="<?= $base ?>edukasi.php">Edukasi</a></li>
+      <ul class="navbar-nav me-auto" id="simbNavList">
+        <li class="nav-item"><a class="nav-link simb-nav-link <?= $aktif === 'beranda'      ? 'active' : '' ?>" href="<?= $base ?>index.php" data-simb-page="beranda">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link simb-nav-link" href="<?= $base ?>index.php#peta" data-simb-hash="peta">Peta Gempa</a></li>
+        <li class="nav-item"><a class="nav-link simb-nav-link" href="<?= $base ?>index.php#dirasakan" data-simb-hash="dirasakan">Gempa Dirasakan</a></li>
+        <li class="nav-item"><a class="nav-link simb-nav-link" href="<?= $base ?>index.php#statistik" data-simb-hash="statistik">Statistik</a></li>
+        <li class="nav-item"><a class="nav-link simb-nav-link <?= $aktif === 'orang-hilang' ? 'active' : '' ?>" href="<?= $base ?>orang-hilang/cari.php" data-simb-page="orang-hilang">Orang Hilang</a></li>
+        <li class="nav-item"><a class="nav-link simb-nav-link <?= $aktif === 'edukasi'      ? 'active' : '' ?>" href="<?= $base ?>edukasi.php" data-simb-page="edukasi">Edukasi</a></li>
       </ul>
-      <a class="btn btn-danger fw-bold d-none d-lg-inline-block" href="<?= $base ?>index.php#kontak">
-        <i class="bi bi-telephone-fill"></i> KONTAK DARURAT
-      </a>
+
+      <!-- ── Right cluster ── -->
+      <div class="d-none d-lg-flex align-items-center gap-3">
+        <!-- Live status badge -->
+        <span class="simb-live-badge" aria-label="Sistem aktif real-time">
+          <span class="simb-live-dot" aria-hidden="true"></span>
+          <span class="simb-live-text">LIVE&thinsp;•&thinsp;<span id="simbNavClock">Sistem Aktif</span></span>
+        </span>
+        <!-- Emergency button -->
+        <a class="btn btn-danger fw-bold simb-btn-emergency" href="<?= $base ?>index.php#kontak">
+          <i class="bi bi-telephone-fill"></i> KONTAK DARURAT
+        </a>
+      </div>
+
+      <!-- Mobile live badge (inside drawer) -->
+      <div class="d-lg-none simb-live-badge simb-live-badge--mobile mt-2 mb-1">
+        <span class="simb-live-dot" aria-hidden="true"></span>
+        <span class="simb-live-text">LIVE&thinsp;•&thinsp;<span id="simbNavClockMobile">Sistem Aktif</span></span>
+      </div>
     </div>
+
   </div>
 </nav>
 
