@@ -1,7 +1,4 @@
 <?php
-/**
- * Konfigurasi koneksi database & pengaturan umum SIMB
- */
 date_default_timezone_set('Asia/Jakarta');
 
 $host = "localhost";
@@ -9,11 +6,8 @@ $user = "root";
 $pass = "";
 $db   = "db_simb";
 
-// Kunci rahasia untuk memicu sinkronisasi lewat URL (cron eksternal).
-// GANTI dengan string acak milikmu sendiri.
 define('SINKRON_KEY', 'ganti-dengan-kunci-rahasia-kamu');
 
-// Agar error mysqli menjadi exception (lebih mudah ditangani)
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 try {
