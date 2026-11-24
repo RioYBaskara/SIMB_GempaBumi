@@ -161,6 +161,21 @@ require __DIR__ . '/includes/header.php';
         <p class="small mb-0">Peledakan, penambangan, pengisian waduk besar, atau injeksi fluida ke dalam tanah dapat memicu getaran (biasanya kecil).</p></div></div>
     </div>
     <p class="small mt-3 mb-0"><strong>Jenis pergeseran pada patahan (sesar):</strong> sesar naik (batuan terdorong naik), sesar turun (batuan turun), dan sesar mendatar (batuan bergeser menyamping). Di zona <em>subduksi</em>, satu lempeng menunjam ke bawah lempeng lain dan dapat menghasilkan gempa besar yang memicu tsunami.</p>
+        <p class="small mt-3 mb-0"><strong>Jenis pergeseran pada patahan (sesar):</strong>  </p>
+
+    <!-- Video penjelasan lempeng tektonik -->
+    <div class="mt-4 mx-auto no-print" style="max-width: 760px;">
+      <h3 class="h6 fw-bold"><i class="bi bi-play-circle text-danger"></i> Video: Lempeng Tektonik</h3>
+      <div class="ratio ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/lrV0eZXV52E"
+                title="Lempeng Tektonik"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
   </section>
 
   <!-- ================= DAMPAK ================= -->
